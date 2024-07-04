@@ -162,14 +162,19 @@ nnoremap <C-Up> :vsc Debug.StepOut<CR>
 " `<leader> + /` - Comment/uncomment the current line
 " `<leader> + kc` - Comment the selection
 " `<leader> + ku` - Uncomment the selection
-nnoremap <leader>/ :vsc Edit.ToggleLineComment<CR>
-nnoremap <leader>kc :vsc Edit.CommentSelection<CR>
-nnoremap <leader>ku :vsc Edit.UncommentSelection<CR>
+" `<leader> + kw` - Comment the selection with /* */
+noremap <leader>/ :vsc Edit.ToggleLineComment<CR>
+noremap <leader>kc :vsc Edit.CommentSelection<CR>
+noremap <leader>ku :vsc Edit.UncommentSelection<CR>
+vnoremap <leader>kw di/*<Esc>pa*/<Esc>
+nnoremap <leader>kw diwi/*<Esc>pa*/<Esc>
 
 " `<leader>mx` - Expand all regions 
-noremap <leader>mx :vsc Edit.ExpandAllOutlining<CR>
 " `<leader>cx` - Colapse all regions
-noremap <leader>cx :vsc Edit.CollapseAllOutlining<CR>
+" `<leader>cc` - Colapse current region
+nnoremap <leader>mx :vsc Edit.ExpandAllOutlining<CR>
+nnoremap <leader>cx :vsc Edit.CollapseAllOutlining<CR>
+nnoremap <leader>cc :vsc Edit.CollapseCurrentRegion<CR>
 
 " `<leader> + sa` - Save all
 nnoremap <leader>sa :vsc File.SaveAll<CR>
@@ -189,4 +194,18 @@ nnoremap zl :so ~/.vsvimrc<CR>
 
 " `<leader> + d` - Duplicate Selection
 noremap <leader>d :vsc Edit.Duplicate<CR>
+
+" `<leader> + <leader>` - Start vim search
+nnoremap <leader><leader> /
+
+" `o` - Add line below with normal mode
+" `O` - Add line abowe with normal mode
+" `<leader> + o` - Add line below with insert mode
+" `<leader> + O` - Add line abowe with insert mode
+" `<leader> + Enter` - Split the line
+nnoremap o o<Esc>
+nnoremap O O<Esc>
+nnoremap <leader>o o
+nnoremap <leader>O O
+nnoremap <leader><CR> a<CR><Esc>
 ```
