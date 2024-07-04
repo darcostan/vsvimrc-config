@@ -59,9 +59,6 @@ noremap <A-k> :vsc Window.PreviousTab<CR>
 
 " `<Alt> + <Enter>` - Show action indicators and action list
 " `<Ctrl> + <Space>` - Provide a completion list for partially typed words
-" noremap <A-CR> :vsc ReSharper_AltEnter<CR>
-" noremap <C-Space> :vsc Edit.CompleteWord<CR>
-" ReSharper disabled:
 noremap <A-CR> :vsc View.QuickActions<CR>
 noremap <C-Space> :vsc Edit.CompleteWord<CR>
 
@@ -73,9 +70,6 @@ nnoremap K :vsc Edit.QuickInfo<CR>:vsc Edit.ParameterInfo<CR>:execute "normal! K
 
 " `]` - Navigate to the next member / type / tag
 " `[` - Navigate to the previous member / type / tag
-" noremap ] :vsc ReSharper.ReSharper_GotoNextMember<CR>
-" noremap [ :vsc ReSharper.ReSharper_GotoPrevMember<CR>
-" ReSharper disabled:
 noremap ] :vsc Edit.NextMethod<CR>
 noremap [ :vsc Edit.PreviousMethod<CR>
 
@@ -91,33 +85,22 @@ nnoremap gj j
 nnoremap k gk
 nnoremap gk k
 
-" `<leader> + d(eclaration)` - Navigate to a declaration of a symbol﻿
-" `<leader> + i(mplementation)` - Navigate to implementation of a type or a type member
-" `<leader> + u(sage)` - Find usages of any symbol from the solution and referenced assemblies﻿
-" noremap <leader>d :vsc ReSharper.ReSharper_GotoDeclaration<CR>
-" noremap <leader>i :vsc ReSharper.ReSharper_GotoImplementations<CR>
-" noremap <leader>u :vsc ReSharper.ReSharper_FindUsages<CR>
-" ReSharper disabled:
-noremap <leader>d :vsc Edit.GoToDefinition<CR>
-noremap <leader>i :vsc Edit.GoToImplementation<CR>
-noremap <leader>u :vsc Edit.FindAllReferences<CR>
+" `<leader> + gd(eclaration)` - Navigate to a declaration of a symbol﻿
+" `<leader> + gi(mplementation)` - Navigate to implementation of a type or a type member
+" `<leader> + fa(sage)` - Find usages of any symbol from the solution and referenced assemblies﻿
+noremap <leader>gd :vsc Edit.GoToDefinition<CR>
+noremap <leader>gi :vsc Edit.GoToImplementation<CR>
+noremap <leader>fa :vsc Edit.FindAllReferences<CR>
 
 " `<leader> + f(ind) + f(iles)` - Search project items or locate a type﻿
 " `<leader> + f(ind) + m(ember)` - Navigate to a file member or a textual occurrence
 " `<leader> + f(ind) + w(ord)` - Navigate to a text occurrence in code and textual files﻿
-" noremap <leader>ff :vsc ReSharper.ReSharper_GotoType<CR>
-" noremap <leader>fm :vsc ReSharper.ReSharper_GotoFileMember<CR>
-" noremap <leader>fw :vsc ReSharper.ReSharper_GotoText<CR>
-" ReSharper disabled:
 noremap <leader>ff :vsc Edit.GoToType<CR>
 noremap <leader>fm :vsc Edit.GoToMember<CR>
 noremap <leader>fw :vsc Edit.GoToAll<CR>
 
 " `<leader> + e(rror)` - Navigate forwards through all issues detected in the current file
 " `<leader> + E(rror)` - Navigate backwards through all issues detected in the current file
-" noremap <leader>e :vsc ReSharper.ReSharper_GotoNextErrorInSolution<CR>
-" noremap <leader>E :vsc ReSharper.ReSharper_GotoPrevErrorInSolution<CR>
-" ReSharper disabled:
 noremap <leader>e :vsc View.NextError<CR>
 noremap <leader>E :vsc View.PreviousError<CR>
 
@@ -129,15 +112,6 @@ noremap <leader>E :vsc View.PreviousError<CR>
 " `<leader> + t(est) + d(ebug)` - Start debugging the selected test
 " `<leader> + t(set) + s(how) + s(essions)` - Show the unit test sessions window
 " `<leader> + t(set) + s(how) + c(overage)` - Show the unit tests coverage results browser
-" noremap <leader>tr :vsc ReSharper.ReSharper_UnitTestRunFromContext<CR>
-" noremap <leader>ta :vsc ReSharper.ReSharper_UnitTestRunSolution<CR>
-" noremap <leader>tl :vsc ReSharper.ReSharper_UnitTestSessionRepeatPreviousRun<CR>
-" noremap <leader>tf :vsc TestExplorer.RunFailedTests<CR>
-" noremap <leader>tca :vsc ReSharper.ReSharper_CoverAllTestsFromSolution<CR>
-" noremap <leader>td :vsc ReSharper.ReSharper_UnitTestDebugContext<CR>
-" noremap <leader>tss :vsc ReSharper.ReSharper_ShowUnitTestSessions<CR>
-" noremap <leader>tsc :vsc ReSharper.ReSharper_ShowCoverageResultsBrowser<CR>
-" ReSharper disabled:
 noremap <leader>tr :vsc TestExplorer.RunSelectedTests<CR>
 noremap <leader>ta :vsc TestExplorer.RunAllTests<CR>
 noremap <leader>tl :vsc TestExplorer.RepeatLastRun<CR>
@@ -186,11 +160,33 @@ nnoremap <C-Down> :vsc Debug.StepInto<CR>
 nnoremap <C-Up> :vsc Debug.StepOut<CR>
 
 " `<leader> + /` - Comment/uncomment the current line
-"noremap <leader>/ :vsc ReSharper.ReSharper_LineComment<CR>
-" ReSharper disabled:
-noremap <leader>/ :vsc Edit.ToggleLineComment<CR>
+" `<leader> + kc` - Comment the selection
+" `<leader> + ku` - Uncomment the selection
+nnoremap <leader>/ :vsc Edit.ToggleLineComment<CR>
+nnoremap <leader>kc :vsc Edit.CommentSelection<CR>
+nnoremap <leader>ku :vsc Edit.UncommentSelection<CR>
 
 " `<leader>mx` - Expand all regions 
 noremap <leader>mx :vsc Edit.ExpandAllOutlining<CR>
 " `<leader>cx` - Colapse all regions
 noremap <leader>cx :vsc Edit.CollapseAllOutlining<CR>
+
+" `<leader> + sa` - Save all
+nnoremap <leader>sa :vsc File.SaveAll<CR>
+
+" `<leader> + rr` - Refactor Rename
+" `<leader> + rm` - Refactor Method
+" `<leader> + rs` - Surround with
+nnoremap <leader>rr :vsc Refactor.Rename<CR>
+vnoremap <leader>rm :vsc Refactor.ExtractMethod<CR>
+vnoremap <leader>rs :vsc Edit.SurroundWith<CR>
+
+" `<leader> + qk` - Customize Keyboard
+map <leader>qk :vsc Tools.CustomizeKeyboard<CR>
+
+" `zl` - Shout out config file
+nnoremap zl :so ~/.vsvimrc<CR>
+
+" `<leader> + d` - Duplicate Selection
+noremap <leader>d :vsc Edit.Duplicate<CR>
+```
