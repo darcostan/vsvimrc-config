@@ -3,7 +3,7 @@
 <br/>
 
 ```vim
-set clipboard=unnamed            " Sets system synchronized clipboard register
+" set clipboard=unnamed            " Sets system synchronized clipboard register
 set number                       " Enables line numbering
 set relativenumber               " Enables relative line numbering. Along with `number` being set, produces hybrid line number mode
 set cursorline                   " Highlights the current line
@@ -23,6 +23,15 @@ nnoremap <Esc> :nohl<CR>
 " `<Alt> + z` - Toggle word wrap
 noremap <A-z> :vsc Edit.ToggleWordWrap<CR>
 
+" Clipboard shorcuts
+" `Y(ank)` - Copy to sistem clipboard
+" `yY(ank)` - Copy line to sistem clipboard
+" `<leader> + p(aste)` - Paste from sistem clipboard
+nnoremap Y "+y
+vnoremap Y "+y
+nnoremap yY ^"+y$
+nnoremap <leader>p "+p
+
 " `<leader> + .` - Append a period to the end of the current line
 " `<leader> + ,` - Append a comma to the end of the current line
 " `<leader> + ;` - Append a semicolon to the end of the current line
@@ -39,8 +48,10 @@ noremap <leader>nr :set rnu<CR>
 
 " `<leader> + w(indow) + p(in)` - Toggle the pin status of the document
 " `<leader> + w(indows) + c(lose) + a(ll)` - Close all unpinned documents
+" `<leader> + w(indows) + c(lose)` - Close documents
 noremap <leader>wp :vsc Window.PinTab<CR>
 noremap <leader>wca :vsc Window.CloseAllButPinned<CR>
+noremap <leader>wc :vsc Window.CloseDocumentWindow<CR>
 
 " `=` - Reformat code in the selected scope
 " `=a` - Reformat code in the document
@@ -85,12 +96,17 @@ nnoremap gj j
 nnoremap k gk
 nnoremap gk k
 
-" `<leader> + gd(eclaration)` - Navigate to a declaration of a symbol﻿
-" `<leader> + gi(mplementation)` - Navigate to implementation of a type or a type member
-" `<leader> + fa(sage)` - Find usages of any symbol from the solution and referenced assemblies﻿
+" `<leader> + g(o) + d(eclaration)` - Navigate to a declaration of a symbol﻿
+" `<leader> + g(o) + p(eek)` - Peed Definition
+" `<leader> + g(o) + i(mplementation)` - Navigate to implementation of a type or a type member
+" `<leader> + f(ind) + a(ll)` - Find usages of any symbol from the solution and referenced assemblies﻿
 noremap <leader>gd :vsc Edit.GoToDefinition<CR>
+noremap <leader>gp :vsc Edit.PeekDefinition<CR>
 noremap <leader>gi :vsc Edit.GoToImplementation<CR>
 noremap <leader>fa :vsc Edit.FindAllReferences<CR>
+nnoremap <leader>gs :vsc View.SolutionExplorer<CR>
+
+nnoremap <leader>ac :vsc Project.AddClass<CR>
 
 " `<leader> + f(ind) + f(iles)` - Search project items or locate a type﻿
 " `<leader> + f(ind) + m(ember)` - Navigate to a file member or a textual occurrence
@@ -176,8 +192,10 @@ nnoremap <leader>mx :vsc Edit.ExpandAllOutlining<CR>
 nnoremap <leader>cx :vsc Edit.CollapseAllOutlining<CR>
 nnoremap <leader>cc :vsc Edit.CollapseCurrentRegion<CR>
 
-" `<leader> + sa` - Save all
+" `<leader> + s(ave) a(ll)` - Save all
+" `<leader> + s(ave) f(ile)` - Save all
 nnoremap <leader>sa :vsc File.SaveAll<CR>
+nnoremap <leader>sf :vsc File.SaveSelectedItems<CR>
 
 " `<leader> + rr` - Refactor Rename
 " `<leader> + rm` - Refactor Method
@@ -207,5 +225,8 @@ nnoremap o o<Esc>
 nnoremap O O<Esc>
 nnoremap <leader>o o
 nnoremap <leader>O O
-nnoremap <leader><CR> a<CR><Esc>
+nnoremap <leader><CR> i<CR><Esc>
+
+" `<leader> + pc` - Projest Startup Configure
+noremap <leader>pc :vsc Project.ConfigureStartupProjects<CR>
 ```
