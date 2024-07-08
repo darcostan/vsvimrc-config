@@ -200,9 +200,11 @@ nnoremap <leader>sf :vsc File.SaveSelectedItems<CR>
 " `<leader> + rr` - Refactor Rename
 " `<leader> + rm` - Refactor Method
 " `<leader> + rs` - Surround with
+" `<leader> + ri` - Refactor Interface
 nnoremap <leader>rr :vsc Refactor.Rename<CR>
 vnoremap <leader>rm :vsc Refactor.ExtractMethod<CR>
 vnoremap <leader>rs :vsc Edit.SurroundWith<CR>
+nnoremap <leader>ri :vsc Refactor.ExtractInterface<CR>
 
 " `<leader> + qk` - Customize Keyboard
 map <leader>qk :vsc Tools.CustomizeKeyboard<CR>
