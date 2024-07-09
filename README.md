@@ -100,12 +100,23 @@ nnoremap gk k
 " `<leader> + g(o) + p(eek)` - Peed Definition
 " `<leader> + g(o) + i(mplementation)` - Navigate to implementation of a type or a type member
 " `<leader> + f(ind) + a(ll)` - Find usages of any symbol from the solution and referenced assemblies﻿
+" `<leader> + g(o) + f(ile)` - Go to file
+" `<leader> + g(o) + s(olution)` - Open solution explorer
 noremap <leader>gd :vsc Edit.GoToDefinition<CR>
 noremap <leader>gp :vsc Edit.PeekDefinition<CR>
 noremap <leader>gi :vsc Edit.GoToImplementation<CR>
 noremap <leader>fa :vsc Edit.FindAllReferences<CR>
 nnoremap <leader>gs :vsc View.SolutionExplorer<CR>
+nnoremap <leader>gf :vsc File.OpenContainingFolder<CR>
+nnoremap <leader>gs :vsc View.SolutionExplorer<CR>
 
+" Git comands
+" `<leader> + g(it) + c(ommit) - Git window`
+" `<leader> + g(it) + r(epository) - Git repository window`
+nnoremap <leader>gc :vsc View.GitWindow<CR>
+nnoremap <leader>gr :vsc View.GitRepositoryWindow<CR>
+
+" `<leader> + a(dd) + c(lass)` - Add a new class to the project
 nnoremap <leader>ac :vsc Project.AddClass<CR>
 
 " `<leader> + f(ind) + f(iles)` - Search project items or locate a type﻿
@@ -148,6 +159,7 @@ noremap <leader>br :vsc Debug.DeleteAllBreakpoints<CR>
 noremap <leader>ba :vsc Debug.Breakpoints<CR>
 
 " `<leader> + s(tart) + b(uild)` - Build the solution
+" `<leader> + s(tart) + n(bew build)` - Rebuild the solution
 " `<leader> + s(tart) + c(lean)` - Clean the solution
 " `<leader> + s(tart) + b(uild)` + s(election) - Build the project that is currently selected
 " `<leader> + s(tart) + c(lean)` + s(election) - Clean the project that is currently selected
@@ -156,6 +168,7 @@ noremap <leader>ba :vsc Debug.Breakpoints<CR>
 " `<leader> + s(tarted) + b(uild) + c(ancel)` - Cancel the build
 " `<leader> + s(tarted) + d(ebug) + c(ancel)` - Stop debugging
 noremap <leader>sb :vsc Build.BuildSolution<CR>
+noremap <leader>sn :vsc Build.RebuildSolution<CR>
 noremap <leader>sc :vsc Build.CleanSolution<CR>
 noremap <leader>sbs :vsc Build.BuildSelection<CR>
 noremap <leader>scs :vsc Build.CleanSelection<CR>
