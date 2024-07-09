@@ -3,6 +3,9 @@
 <br/>
 
 ```vim
+" No Resharper comands just pure VS
+
+" sistem clipboard disabled because x will lose focus in visual studio
 " set clipboard=unnamed            " Sets system synchronized clipboard register
 set number                       " Enables line numbering
 set relativenumber               " Enables relative line numbering. Along with `number` being set, produces hybrid line number mode
@@ -32,6 +35,7 @@ vnoremap Y "+y
 nnoremap yY ^"+y$
 nnoremap <leader>p "+p
 
+" Append coding most used chars
 " `<leader> + .` - Append a period to the end of the current line
 " `<leader> + ,` - Append a comma to the end of the current line
 " `<leader> + ;` - Append a semicolon to the end of the current line
@@ -41,44 +45,47 @@ noremap <leader>, :s/\v\s*(,\s*)*$/,/<CR>:nohl<CR>
 noremap <leader>; :s/\v\s*(;\s*)*$/;/<CR>:nohl<CR>
 noremap <leader>x :s/.\{1}$//<CR>:nohl<CR>
 
+" Line numbers
 " `<leader> + n(umber) + a(bsolute)` - Set absolute line numbers
 " `<leader> + n(umber) + r(elative)` - Set relative line numbers
 noremap <leader>na :set rnu!<CR>
 noremap <leader>nr :set rnu<CR>
 
+" Tabs
 " `<leader> + w(indow) + p(in)` - Toggle the pin status of the document
-" `<leader> + w(indows) + c(lose) + a(ll)` - Close all unpinned documents
-" `<leader> + w(indows) + c(lose)` - Close documents
+" `<leader> + w(indow) + c(lose) + a(ll)` - Close all unpinned docusments
+" `<leader> + w(indow) + c(lose)` - Close documents
 noremap <leader>wp :vsc Window.PinTab<CR>
 noremap <leader>wca :vsc Window.CloseAllButPinned<CR>
 noremap <leader>wc :vsc Window.CloseDocumentWindow<CR>
 
+" Format code
 " `=` - Reformat code in the selected scope
 " `=a` - Reformat code in the document
-" noremap = :vsc ReSharper.ReSharper_ReformatCode<CR>
-" ReSharper disabled:
+" `<leader> + r(emove) + s(ort)` - Remove and sort 'usings'
 noremap = :vsc Edit.FormatSelection<CR>
-noremap =a :vsc Edit.FormatDocument<CR>
+nnoremap =a :vsc Edit.FormatDocument<CR>
+nnoremap <leader>rs :vsc Edit.RemoveAndSort<CR>
 
+" Tabs navigation
 " `<Alt> + j` - Navigate to the next tab
 " `<Alt> + k` - Navigate to the previous tab
 " You might want to change these if you prefer horizontal tabs loayout
 noremap <A-j> :vsc Window.NextTab<CR>
 noremap <A-k> :vsc Window.PreviousTab<CR>
-"noremap <A-l> :vsc Window.NextTab<CR>
-"noremap <A-h> :vsc Window.PreviousTab<CR>
+" noremap <A-l> :vsc Window.NextTab<CR>
+" noremap <A-h> :vsc Window.PreviousTab<CR>
 
+" Visual studio quick actions and completitions
 " `<Alt> + <Enter>` - Show action indicators and action list
 " `<Ctrl> + <Space>` - Provide a completion list for partially typed words
 noremap <A-CR> :vsc View.QuickActions<CR>
 noremap <C-Space> :vsc Edit.CompleteWord<CR>
 
-" `<leader> + r(emove) + s(ort)` - Remove and sort 'usings'
-noremap <leader>rs :vsc Edit.RemoveAndSort<CR>
-
 " `K` - Show quick information and/or parameter details tooltip
 nnoremap K :vsc Edit.QuickInfo<CR>:vsc Edit.ParameterInfo<CR>:execute "normal! K"<CR>
 
+" Navigation
 " `]` - Navigate to the next member / type / tag
 " `[` - Navigate to the previous member / type / tag
 noremap ] :vsc Edit.NextMethod<CR>
@@ -96,6 +103,7 @@ nnoremap gj j
 nnoremap k gk
 nnoremap gk k
 
+" Go to commands
 " `<leader> + g(o) + d(eclaration)` - Navigate to a declaration of a symbol﻿
 " `<leader> + g(o) + p(eek)` - Peed Definition
 " `<leader> + g(o) + i(mplementation)` - Navigate to implementation of a type or a type member
@@ -116,9 +124,11 @@ nnoremap <leader>gs :vsc View.SolutionExplorer<CR>
 nnoremap <leader>gc :vsc View.GitWindow<CR>
 nnoremap <leader>gr :vsc View.GitRepositoryWindow<CR>
 
+" Add class
 " `<leader> + a(dd) + c(lass)` - Add a new class to the project
 nnoremap <leader>ac :vsc Project.AddClass<CR>
 
+" Find window (Ctrl+,)
 " `<leader> + f(ind) + f(iles)` - Search project items or locate a type﻿
 " `<leader> + f(ind) + m(ember)` - Navigate to a file member or a textual occurrence
 " `<leader> + f(ind) + w(ord)` - Navigate to a text occurrence in code and textual files﻿
@@ -126,11 +136,13 @@ noremap <leader>ff :vsc Edit.GoToType<CR>
 noremap <leader>fm :vsc Edit.GoToMember<CR>
 noremap <leader>fw :vsc Edit.GoToAll<CR>
 
+" Go to Errors
 " `<leader> + e(rror)` - Navigate forwards through all issues detected in the current file
 " `<leader> + E(rror)` - Navigate backwards through all issues detected in the current file
 noremap <leader>e :vsc View.NextError<CR>
 noremap <leader>E :vsc View.PreviousError<CR>
 
+" Test Runner
 " `<leader> + t(est) + r(un)` - Run unit tests from the current context
 " `<leader> + t(est) + a(ll)` - Run all the tests in the solution
 " `<leader> + t(est) + l(ast)` - Repeat a previous test run
@@ -147,6 +159,7 @@ noremap <leader>td :vsc TestExplorer.DebugSelectedTests<CR>
 noremap <leader>tss :vsc TestExplorer.ShowTestExplorer<CR>
 noremap <leader>tsc :vsc View.CodeCoverageResults<CR>
 
+" Debuging
 " `<leader> + b + b(reakpoint)` - Toggle a breakpoint at the current line
 " `<leader> + b(reakpoints) + d(isable)` - Disable all breakpoins
 " `<leader> + b(reakpoints) + e(nable)` - Enable all breakpoints
@@ -158,6 +171,7 @@ noremap <leader>be :vsc Debug.EnableAllBreakpoints<CR>
 noremap <leader>br :vsc Debug.DeleteAllBreakpoints<CR>
 noremap <leader>ba :vsc Debug.Breakpoints<CR>
 
+" Building and debugging
 " `<leader> + s(tart) + b(uild)` - Build the solution
 " `<leader> + s(tart) + n(bew build)` - Rebuild the solution
 " `<leader> + s(tart) + c(lean)` - Clean the solution
@@ -177,6 +191,7 @@ noremap <leader>sr :vsc Debug.StartWithoutDebugging<CR>
 noremap <leader>sbc :vsc Build.Cancel<CR>
 noremap <leader>sdc :vsc Debug.StopDebugging<CR>
 
+" Debuging steps
 " `<leader> + q(ick) + w(atch)` - Show the QuickWatch dialog box
 " `<Ctrl> + <Left>` - Move execution pointer to the selected statement
 " `<Ctrl> + <Right>` - Step over
@@ -188,6 +203,7 @@ nnoremap <C-Right> :vsc Debug.StepOver<CR>
 nnoremap <C-Down> :vsc Debug.StepInto<CR>
 nnoremap <C-Up> :vsc Debug.StepOut<CR>
 
+" Comments commands
 " `<leader> + /` - Comment/uncomment the current line
 " `<leader> + kc` - Comment the selection
 " `<leader> + ku` - Uncomment the selection
@@ -198,18 +214,21 @@ noremap <leader>ku :vsc Edit.UncommentSelection<CR>
 vnoremap <leader>kw di/*<Esc>pa*/<Esc>
 nnoremap <leader>kw diwi/*<Esc>pa*/<Esc>
 
+" Regions expand and collapse
 " `<leader>mx` - Expand all regions 
-" `<leader>cx` - Colapse all regions
-" `<leader>cc` - Colapse current region
+" `<leader>cx` - Collapse all regions
+" `<leader>cc` - Collapse current region
 nnoremap <leader>mx :vsc Edit.ExpandAllOutlining<CR>
 nnoremap <leader>cx :vsc Edit.CollapseAllOutlining<CR>
 nnoremap <leader>cc :vsc Edit.CollapseCurrentRegion<CR>
 
+" Save files
 " `<leader> + s(ave) a(ll)` - Save all
 " `<leader> + s(ave) f(ile)` - Save all
 nnoremap <leader>sa :vsc File.SaveAll<CR>
 nnoremap <leader>sf :vsc File.SaveSelectedItems<CR>
 
+" Refactoring commands
 " `<leader> + rr` - Refactor Rename
 " `<leader> + rm` - Refactor Method
 " `<leader> + rs` - Surround with
