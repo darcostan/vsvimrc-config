@@ -27,13 +27,16 @@ nnoremap <Esc> :nohl<CR>
 noremap <A-z> :vsc Edit.ToggleWordWrap<CR>
 
 " Clipboard shorcuts
-" `Y(ank)` - Copy to sistem clipboard
-" `yY(ank)` - Copy line to sistem clipboard
-" `<leader> + p(aste)` - Paste from sistem clipboard
-nnoremap Y "+y
-vnoremap Y "+y
-nnoremap yY ^"+y$
-nnoremap <leader>p "+p
+" `Y(ank)` or `<leader> + y`- Copy to sistem clipboard
+" `YY(ank)` or `<leader> + Y`- Copy line to sistem clipboard
+" `<leader> + p(aste)` - Paste in visual mode without changing clipboard
+" `<leader> + P(aste)` - Paste from sistem clipboard
+noremap Y "+y
+noremap YY ^"+y$
+vnoremap <leader>p "_dP
+noremap <leader>P "+p
+noremap <leader>y "+y
+noremap <leader>Y "+Y
 
 " Append coding most used chars
 " `<leader> + .` - Append a period to the end of the current line
