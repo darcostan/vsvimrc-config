@@ -23,6 +23,9 @@ nnoremap <Space> <NOP>
 " `Esc` - Remove search highlights
 nnoremap <Esc> :nohl<CR>
 
+" `<leader> + <leader>` - Start vim search
+nnoremap <leader><leader> /
+
 " `<Alt> + z` - Toggle word wrap
 noremap <A-z> :vsc Edit.ToggleWordWrap<CR>
 
@@ -61,6 +64,10 @@ noremap <leader>nr :set rnu<CR>
 noremap <leader>wp :vsc Window.PinTab<CR>
 noremap <leader>wca :vsc Window.CloseAllButPinned<CR>
 noremap <leader>wc :vsc Window.CloseDocumentWindow<CR>
+noremap <leader>ws :vsc Window.AddTabtoSelection<CR>
+noremap <leader>wd :vsc Window.NextTab<CR>
+noremap <leader>wu :vsc Window.PreviousTab<CR>
+noremap <leader>wcu :vsc Window.RestoreClosedTab<CR>
 
 " Format code
 " `=` - Reformat code in the selected scope
@@ -86,18 +93,19 @@ noremap <A-CR> :vsc View.QuickActions<CR>
 noremap <C-Space> :vsc Edit.CompleteWord<CR>
 
 " `K` - Show quick information and/or parameter details tooltip
-nnoremap K :vsc Edit.QuickInfo<CR>:vsc Edit.ParameterInfo<CR>:execute "normal! K"<CR>
+nnoremap K :vsc Edit.QuickInfo<CR>
+nnoremap L :vsc Edit.ParameterInfo<CR>
 
 " Navigation
 " `]` - Navigate to the next member / type / tag
 " `[` - Navigate to the previous member / type / tag
-noremap ] :vsc Edit.NextMethod<CR>
-noremap [ :vsc Edit.PreviousMethod<CR>
+noremap ] :vsc Edit.NextMethod<CR>zz
+noremap [ :vsc Edit.PreviousMethod<CR>zz
 
 " `<Ctrl> + -` - Move backward through navigation history
 " `<Ctrl> + =` - Move forward through navigation history
-noremap <C>- :vsc View.NavigateBackward<CR>
-noremap <C>= :vsc View.NavigateForward<CR>
+noremap <C--> :vsc View.NavigateBackward<CR>
+noremap <C-=> :vsc View.NavigateForward<CR>
 
 " Improves navigation when wrapping
 " by swapping `j` with `gj` and `k` with `gk`
@@ -111,15 +119,19 @@ nnoremap gk k
 " `<leader> + g(o) + p(eek)` - Peed Definition
 " `<leader> + g(o) + i(mplementation)` - Navigate to implementation of a type or a type member
 " `<leader> + f(ind) + a(ll)` - Find usages of any symbol from the solution and referenced assemblies﻿
-" `<leader> + g(o) + f(ile)` - Go to file
 " `<leader> + g(o) + s(olution)` - Open solution explorer
+" `<leader> + g(o) + f(ile)` - Go to file
+" `<leader> + g(o) + a(ctive) + s(olution)` - Go to active file in solution explorer
 noremap <leader>gd :vsc Edit.GoToDefinition<CR>
 noremap <leader>gp :vsc Edit.PeekDefinition<CR>
 noremap <leader>gi :vsc Edit.GoToImplementation<CR>
 noremap <leader>fa :vsc Edit.FindAllReferences<CR>
 nnoremap <leader>gs :vsc View.SolutionExplorer<CR>
 nnoremap <leader>gf :vsc File.OpenContainingFolder<CR>
-nnoremap <leader>gs :vsc View.SolutionExplorer<CR>
+nnoremap <leader>gas :vsc SolutionExplorer.SyncWithActiveDocument<CR>
+
+" Find and replace
+nnoremap g/r :vsc Edit.Replace<CR>
 
 " Git comands
 " `<leader> + g(it) + c(ommit) - Git window`
@@ -135,9 +147,11 @@ nnoremap <leader>ac :vsc Project.AddClass<CR>
 " `<leader> + f(ind) + f(iles)` - Search project items or locate a type﻿
 " `<leader> + f(ind) + m(ember)` - Navigate to a file member or a textual occurrence
 " `<leader> + f(ind) + w(ord)` - Navigate to a text occurrence in code and textual files﻿
+" `<leader> + f(ind) + l` - Navigate to a recent file
 noremap <leader>ff :vsc Edit.GoToType<CR>
 noremap <leader>fm :vsc Edit.GoToMember<CR>
 noremap <leader>fw :vsc Edit.GoToAll<CR>
+nnoremap <leader>fl :vsc Edit.GoToRecentFile<CR>
 
 " Go to Errors
 " `<leader> + e(rror)` - Navigate forwards through all issues detected in the current file
@@ -232,38 +246,50 @@ nnoremap <leader>sa :vsc File.SaveAll<CR>
 nnoremap <leader>sf :vsc File.SaveSelectedItems<CR>
 
 " Refactoring commands
-" `<leader> + rr` - Refactor Rename
-" `<leader> + rm` - Refactor Method
-" `<leader> + rs` - Surround with
-" `<leader> + ri` - Refactor Interface
+" `<leader> + r(efactor) + r(ename)` - Refactor Rename
+" `<leader> + r(efactor) + m(ethod)` - Refactor Method
+" `<leader> + r(efactor) + s(urround)` - Surround with
+" `<leader> + r(efactor) + i(nterface)` - Refactor Interface
+" `<leader> + c(ons) + t(ructor)` - Snipet create constructor.
+" `<leader> + p(roper) + t(y)` - Snipet create property.
+" `<leader> + d(ouble)` - Duplicate Selection
 nnoremap <leader>rr :vsc Refactor.Rename<CR>
 vnoremap <leader>rm :vsc Refactor.ExtractMethod<CR>
 vnoremap <leader>rs :vsc Edit.SurroundWith<CR>
 nnoremap <leader>ri :vsc Refactor.ExtractInterface<CR>
+nnoremap <leader>is :vsc Edit.InsertSnippet<CR>
+nnoremap <leader>ct ictor<tab>
+nnoremap <leader>pt iprop<tab>
+noremap <leader>dd :vsc Edit.Duplicate<CR>
 
-" `<leader> + qk` - Customize Keyboard
-map <leader>qk :vsc Tools.CustomizeKeyboard<CR>
-
-" `zl` - Shout out config file
-nnoremap zl :so ~/.vsvimrc<CR>
-
-" `<leader> + d` - Duplicate Selection
-noremap <leader>d :vsc Edit.Duplicate<CR>
-
-" `<leader> + <leader>` - Start vim search
-nnoremap <leader><leader> /
-
+" New lines and breake line shorcuts
 " `o` - Add line below with normal mode
 " `O` - Add line abowe with normal mode
 " `<leader> + o` - Add line below with insert mode
 " `<leader> + O` - Add line abowe with insert mode
 " `<leader> + Enter` - Split the line
 nnoremap o o<Esc>
-nnoremap O O<Esc>
+nnoremap O O<Esc>j
 nnoremap <leader>o o
 nnoremap <leader>O O
 nnoremap <leader><CR> i<CR><Esc>
 
-" `<leader> + pc` - Projest Startup Configure
+" `<leader> + p(roject) + c(onfigure)` - Projest Startup Configure
 noremap <leader>pc :vsc Project.ConfigureStartupProjects<CR>
+
+" `<leader> + d(ocument) + t(his)` - Document this
+nnoremap <leader>dt :vsc Edit.InsertComment<CR>
+
+" Better navigation commands
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap n nzz
+nnoremap N Nzz
+
+" Visual studio tools shorcuts
+" `<leader> + qk` - Customize Keyboard
+" `zl` - Shout out config file
+nnoremap <leader>: :vsc Window.QuickLaunch<CR>
+map <leader>qk :vsc Tools.CustomizeKeyboard<CR>
+nnoremap zl :so ~/.vsvimrc<CR>
 ```
