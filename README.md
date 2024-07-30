@@ -1,4 +1,18 @@
-<img src="./resources/header.png">
+
+<!-- __     ______     __     ___                     -->
+<!-- \ \   / / ___|    \ \   / (_)_ __ ___  _ __ ___  -->
+<!--  \ \ / /\___ \ ____\ \ / /| | '_ ` _ \| '__/ __| -->
+<!--   \ V /  ___) |_____\ V / | | | | | | | | | (__  -->
+<!--    \_/  |____/       \_/  |_|_| |_| |_|_|  \___| -->
+<!--                                                  -->
+
+
+<!--  ____        _ _ _                 ____             __ _        -->
+<!-- |  _ \  __ _| (_) |__   ___  _ __ / ___|___  _ __  / _(_) __ _  -->
+<!-- | | | |/ _` | | | '_ \ / _ \| '__| |   / _ \| '_ \| |_| |/ _` | -->
+<!-- | |_| | (_| | | | |_) | (_) | |  | |__| (_) | | | |  _| | (_| | -->
+<!-- |____/ \__,_|_|_|_.__/ \___/|_|___\____\___/|_| |_|_| |_|\__, | -->
+<!--                              |_____|                     |___/  -->
 
 <br/>
 
@@ -61,6 +75,10 @@ noremap <leader>nr :set rnu<CR>
 " `<leader> + w(indow) + p(in)` - Toggle the pin status of the document
 " `<leader> + w(indow) + c(lose) + a(ll)` - Close all unpinned docusments
 " `<leader> + w(indow) + c(lose)` - Close documents
+" `<leader> + w(indow) + s(elect)` - Add a tab to the selection
+" `<leader> + w(indow) + d(own)` - Navigate to the next tab
+" `<leader> + w(indow) + u(p)` - Navigate to the previous tab
+" `<leader> + w(indow) + c(lose) + u(ndone)` - Restore the last closed tab
 noremap <leader>wp :vsc Window.PinTab<CR>
 noremap <leader>wca :vsc Window.CloseAllButPinned<CR>
 noremap <leader>wc :vsc Window.CloseDocumentWindow<CR>
@@ -68,6 +86,30 @@ noremap <leader>ws :vsc Window.AddTabtoSelection<CR>
 noremap <leader>wd :vsc Window.NextTab<CR>
 noremap <leader>wu :vsc Window.PreviousTab<CR>
 noremap <leader>wcu :vsc Window.RestoreClosedTab<CR>
+
+" `<leader> + 1-0` - Easy tabs navigatioon Harpoon like
+" Hot tabs exttension https://github.com/justcla/HotTabs
+noremap <leader>1 :vsc Window.GoToPinnedTab1<CR>
+noremap <leader>2 :vsc Window.GoToPinnedTab2<CR>
+noremap <leader>3 :vsc Window.GoToPinnedTab3<CR>
+noremap <leader>4 :vsc Window.GoToPinnedTab4<CR>
+noremap <leader>5 :vsc Window.GoToPinnedTab5<CR>
+noremap <leader>6 :vsc Window.GoToPinnedTab6<CR>
+noremap <leader>7 :vsc Window.GoToPinnedTab7<CR>
+noremap <leader>8 :vsc Window.GoToPinnedTab8<CR>
+noremap <leader>9 :vsc Window.GoToPinnedTab9<CR>
+noremap <leader>0 :vsc Window.GoToPinnedTab10<CR>
+
+noremap <leader>w1 :vsc Window.GoToUnpinnedTab1<CR>
+noremap <leader>w2 :vsc Window.GoToUnpinnedTab2<CR>
+noremap <leader>w3 :vsc Window.GoToUnpinnedTab3<CR>
+noremap <leader>w4 :vsc Window.GoToUnpinnedTab4<CR>
+noremap <leader>w5 :vsc Window.GoToUnpinnedTab5<CR>
+noremap <leader>w6 :vsc Window.GoToUnpinnedTab6<CR>
+noremap <leader>w7 :vsc Window.GoToUnpinnedTab7<CR>
+noremap <leader>w8 :vsc Window.GoToUnpinnedTab8<CR>
+noremap <leader>w9 :vsc Window.GoToUnpinnedTab9<CR>
+noremap <leader>w0 :vsc Window.GoToUnpinnedTab10<CR>
 
 " Format code
 " `=` - Reformat code in the selected scope
@@ -201,12 +243,12 @@ noremap <leader>ba :vsc Debug.Breakpoints<CR>
 noremap <leader>sb :vsc Build.BuildSolution<CR>
 noremap <leader>sn :vsc Build.RebuildSolution<CR>
 noremap <leader>sc :vsc Build.CleanSolution<CR>
-noremap <leader>sbs :vsc Build.BuildSelection<CR>
-noremap <leader>scs :vsc Build.CleanSelection<CR>
+noremap <leader>ss :vsc Build.BuildSelection<CR>
+noremap <leader>sC :vsc Build.CleanSelection<CR>
 noremap <leader>sd :vsc Debug.Start<CR>
 noremap <leader>sr :vsc Debug.StartWithoutDebugging<CR>
-noremap <leader>sbc :vsc Build.Cancel<CR>
-noremap <leader>sdc :vsc Debug.StopDebugging<CR>
+noremap <leader>sB :vsc Build.Cancel<CR>
+noremap <leader>sD :vsc Debug.StopDebugging<CR>
 
 " Debuging steps
 " `<leader> + q(ick) + w(atch)` - Show the QuickWatch dialog box
@@ -286,10 +328,12 @@ nnoremap <C-u> <C-u>zz
 nnoremap n nzz
 nnoremap N Nzz
 
+vnoremap J :vsc Edit.MoveSelectedLinesDown<CR>
+vnoremap K :vsc Edit.MoveSelectedLinesUp<CR>
+
 " Visual studio tools shorcuts
 " `<leader> + qk` - Customize Keyboard
 " `zl` - Shout out config file
 nnoremap <leader>: :vsc Window.QuickLaunch<CR>
 map <leader>qk :vsc Tools.CustomizeKeyboard<CR>
 nnoremap zl :so ~/.vsvimrc<CR>
-```
